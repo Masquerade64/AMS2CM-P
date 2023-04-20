@@ -28,13 +28,7 @@ public class ModManager
 
     public static ModManager Init()
     {
-        var ams2LibraryPath = Steam.AppLibraryPath(Ams2SteamId);
-        if (ams2LibraryPath is null)
-        {
-            throw new Exception("Cannot find AMS2 on Steam");
-        }
-
-        var ams2InstallationDirectory = Path.Combine(ams2LibraryPath, Ams2InstallationDir);
+        var ams2InstallationDirectory = File.ReadAllText("gamepath.txt");
         var modsDir = Path.Combine(ams2InstallationDirectory, ModsSubdir);
         var installPaths = new InstallPaths(
             ModArchivesPath: Path.Combine(modsDir, EnabledModsSubdir),
